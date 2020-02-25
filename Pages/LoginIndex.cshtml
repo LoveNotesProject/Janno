@@ -1,0 +1,73 @@
+@page "/Login"
+@model Janno.Pages.LoginIndexModel
+
+@{
+  Layout = "Shared/_Layout.cshtml";
+  ViewData["Title"] = "Anmelden";
+}
+
+<div id="login" xmlns="http://www.w3.org/1999/html">
+  <div class="mdc-layout-grid">
+    <div class="mdc-card login-card text-center">
+      <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell--span-12">
+          <a href="//gameserver.store">
+            @* <img alt="Gameserver.store" title="Gameserver.store" src="/img/logo.png" height="83" width="265"/> *@
+          </a>
+          <h1 class="mdc-typography mdc-typography--headline6 text-left">Anmelden</h1>
+        </div>
+        <form method="post">
+          <div class="mdc-layout-grid__cell--span-12">
+            <div class="mdc-text-field mdc-text-field--with-leading-icon width-full" data-mdc-auto-init="MDCTextField">
+              <i class="material-icons mdc-text-field__icon">person</i>
+              <input class="mdc-text-field__input" type="text" asp-for="UserLoginInput.UserName" asp-validation-for="UserLoginInput.UserName" tabindex="1">
+              <div class="mdc-line-ripple"></div>
+              <label class="mdc-floating-label">Benutzername</label>
+            </div>
+            <div class="mdc-text-field-helper-line">
+              <span class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent" asp-validation-for="UserLoginInput.UserName"></span>
+            </div>
+          </div>
+
+          <div class="mdc-layout-grid__cell--span-12">
+            <div class="mdc-text-field mdc-text-field--with-leading-icon width-full" data-mdc-auto-init="MDCTextField">
+              <i class="material-icons mdc-text-field__icon">vpn_key</i>
+              <input class="mdc-text-field__input" type="password" asp-for="UserLoginInput.Password" asp-validation-for="UserLoginInput.Password" tabindex="2">
+              <div class="mdc-line-ripple"></div>
+              <label class="mdc-floating-label" asp-for="UserLoginInput.Password">Passwort</label>
+            </div>
+            <div class="mdc-text-field-helper-line">
+              <span class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent" asp-validation-for="UserLoginInput.Password"></span>
+            </div>
+            <div asp-validation-summary="ModelOnly"></div>
+          </div>
+
+          <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone text-center">
+            <a asp-page="/Login/LoginReset" tabindex="4">Passwort vergessen?</a>
+          </div>
+          <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone text-center">
+            <a asp-page="/Login/LoginRegister" tabindex="5">Noch keinen Account?</a>
+          </div>
+
+          <div class="mdc-layout-grid__cell--span-12">
+            <button class="mdc-button mdc-button--raised" type="submit" tabindex="3">
+              <span class="mdc-button__label">Anmelden</span>
+            </button>
+          </div>
+        </form>
+
+        <div class="mdc-layout-grid__cell--span-12">
+          <a href="/" class="mdc-typography--body1">© <cache expires-after="@TimeSpan.FromDays(30)">@DateTime.Now.Year MyDating - All rights reserved</cache></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  body {
+    display: block;
+    margin: 8px;
+    height: unset;
+  }
+</style>

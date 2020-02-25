@@ -1,0 +1,31 @@
+﻿@page
+@model IndexModel
+@{
+  Layout = "Shared/_Layout.cshtml";
+  ViewData["Title"] = "Übersicht";
+}
+
+
+<div class="mdc-layout-grid">
+  <div class="mdc-layout-grid__inner">
+    <div class="mdc-layout-grid__cell--span-12">
+      <h1 class="mdc-typography--headline6">@ViewData["Title"]</h1>
+      hallo besucher
+    </div>
+  </div>
+</div>
+
+
+<button class="mdc-button" id="test">
+  <div class="mdc-button__ripple"></div>
+  <span class="mdc-button__label">Button</span>
+</button>
+
+
+<script>
+
+
+  console.log(document.querySelector('#test'));
+
+
+</script>
