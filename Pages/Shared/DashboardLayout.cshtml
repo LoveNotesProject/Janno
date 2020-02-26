@@ -18,5 +18,78 @@
 </head>
 
 <body>
-@RenderBody()
+<aside class="mdc-drawer mdc-drawer--dismissible mdc-drawer--open">
+  <a class="mdc-drawer__header" asp-page="/Profile/ProfileIndex" asp-route-username="@user.UserName">
+    <h3 class="mdc-drawer__title">@user.UserName</h3>
+    <h6 class="mdc-drawer__subtitle">@user.Email</h6>
+  </a>
+  <hr class="mdc-list-divider">
+  <div class="mdc-drawer__content">
+    <h6 class="mdc-list-group__subheader">Dashboard</h6>
+    <nav class="mdc-list">
+      <a class="mdc-list-item" aria-current="page" asp-page="/Dashboard/DashboardIndex">
+        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">dashboard</i>
+        <span class="mdc-list-item__text">Übersicht</span>
+      </a>
+      <a class="mdc-list-item" asp-page="/Chat/ChatIndex">
+        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">casino</i>
+        <span class="mdc-list-item__text">Spielen</span>
+      </a>
+      <a class="mdc-list-item" asp-page="/Chat/ChatIndex">
+        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">message</i>
+        <span class="mdc-list-item__text">Nachrichten</span>
+      </a>
+      <hr class="mdc-list-divider">
+      <h6 class="mdc-list-group__subheader">Account</h6>
+      <a class="mdc-list-item" asp-page="/Profile/ProfileIndex" asp-route-username="@user.UserName">
+        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">perm_identity</i>
+        <span class="mdc-list-item__text">Profil</span>
+      </a>
+
+      <a class="mdc-list-item" asp-page="/Profile/Setting/ProfileSettingIndex">
+        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">settings</i>
+        <span class="mdc-list-item__text">Einstellungen</span>
+      </a>
+    </nav>
+  </div>
+
+  <span class="mdc-typography--body2 text-center">
+    <small>
+      © <cache expires-after="@TimeSpan.FromDays(7)"></cache>@DateTime.Now.Year
+      <a href="/" target="_blank" style="text-decoration: none; color: unset">Janno</a>
+    </small>
+  </span>
+
+</aside>
+
+
+<div class="mdc-drawer-app-content">
+  <header class="mdc-top-app-bar mdc-top-app-bar--fixed mdc-elevation--z2">
+    <div class="mdc-top-app-bar__row">
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+        <a class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
+        <a class="mdc-top-app-bar__title">@ViewData["Title"]</a>
+      </section>
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+        @* <a class="material-icons mdc-top-app-bar__action-item mdc-icon-button badge" data-badge="10" aria-label="Print this page" data-action-notification>notifications</a> *@
+        <a class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Bookmark this page" asp-page="/Chat/ChatIndex">message</a>
+        <a class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Print this page" asp-page="/Profile/ProfileIndex" asp-route-username="@user.UserName">person</a>
+      </section>
+    </div>
+  </header>
+
+  <script type="text/javascript" src="/lib/material/js/material.js"></script>
+
+  <main class="main-content">
+    @RenderBody()
+
+    <div class="mdc-snackbar mdc-snackbar--leading" dir="ltr">
+      <div class="mdc-snackbar__surface">
+        <div class="mdc-snackbar__label" role="status" aria-live="polite" dir="ltr"></div>
+      </div>
+    </div>
+
+    @Html.AntiForgeryToken()
+  </main>
+</div>
 </body>

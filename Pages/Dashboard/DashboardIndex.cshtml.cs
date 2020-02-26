@@ -15,15 +15,6 @@ namespace Janno.Pages.Dashboard {
     [BindProperty]
     public User User { get; set; }
 
-    [BindProperty]
-    public int NotificationCount { get; set; }
-
-    [BindProperty]
-    public int ProfileLikesCount { get; set; }
-
-    [BindProperty]
-    public int ProfileVisitsCount { get; set; }
-
     public DashboardIndexModel(UserManager userManager, UserContext userContext) {
       this.UserManager = userManager;
       this.UserContext = userContext;
