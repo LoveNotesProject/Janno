@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -18,6 +19,16 @@ namespace Janno.Data.User {
       userValidators, passwordValidators, keyNormalizer, errors, services, logger) {
       this.UserStore = store;
     }
+
+    #region UserSearch
+
+
+    public async Task<UserSearch> GetUserSearchAsync(string userId) {
+      this.ThrowIfDisposed();
+      return await this.UserStore.GetUserSearchAsync(userId, this.CancellationToken);
+    }
+
+      #endregion
     
   }
 

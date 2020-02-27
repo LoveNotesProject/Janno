@@ -2,6 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using EFSecondLevelCache.Core;
 using EFSecondLevelCache.Core.Contracts;
+using Janno.Data.User.Profile;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,9 @@ namespace Janno.Data.User {
     }
 
     public DbSet<User> User { get; set; }
+    public DbSet<UserDetail> Details { get; set; }
+    public DbSet<UserSearch> Searches { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder builder) {
       base.OnModelCreating(builder);
@@ -26,6 +30,7 @@ namespace Janno.Data.User {
       RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) builder.Entity<User>(), "User");
       builder.Entity<IdentityUserRole<string>>().ToTable("UserRole");
       builder.Entity<IdentityRole>().ToTable("Roles");
+      builder.Entity<UserDetail>().ToTable("UserDetail");
     }
 
     public override int SaveChanges() {

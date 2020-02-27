@@ -262,6 +262,24 @@ namespace Janno.Data.User {
       throw new NotImplementedException();
     }
 
+    #region UserSearch
+
+    /// <summary>
+    /// Get from the database the specific user search
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
+    public async Task<UserSearch> GetUserSearchAsync(string userId, CancellationToken cancellationToken) {
+      cancellationToken.ThrowIfCancellationRequested();
+      if (userId == null) throw new ArgumentNullException(nameof(userId));
+
+      return await this.Context.Searches.Where(u => u.UserId == userId).FirstOrDefaultAsync(cancellationToken);
+    }
+
+    #endregion
+
   }
 
 }
