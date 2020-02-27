@@ -31,9 +31,9 @@
         <i class="material-icons mdc-list-item__graphic" aria-hidden="true">dashboard</i>
         <span class="mdc-list-item__text">Übersicht</span>
       </a>
-      <a class="mdc-list-item" asp-page="/Chat/ChatIndex">
-        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">casino</i>
-        <span class="mdc-list-item__text">Spielen</span>
+      <a class="mdc-list-item" asp-page="/Search/SearchIndex">
+        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">sports_kabaddi</i>
+        <span class="mdc-list-item__text">Suchen</span>
       </a>
       <a class="mdc-list-item" asp-page="/Chat/ChatIndex">
         <i class="material-icons mdc-list-item__graphic" aria-hidden="true">message</i>
@@ -45,7 +45,6 @@
         <i class="material-icons mdc-list-item__graphic" aria-hidden="true">perm_identity</i>
         <span class="mdc-list-item__text">Profil</span>
       </a>
-
       <a class="mdc-list-item" asp-page="/Profile/Setting/ProfileSettingIndex">
         <i class="material-icons mdc-list-item__graphic" aria-hidden="true">settings</i>
         <span class="mdc-list-item__text">Einstellungen</span>
@@ -92,4 +91,7 @@
     @Html.AntiForgeryToken()
   </main>
 </div>
+
+<script type="text/javascript" src="/js/dashboard.js"></script>
+
 </body>

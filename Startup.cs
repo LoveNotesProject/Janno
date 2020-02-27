@@ -109,9 +109,10 @@ namespace Janno {
       });
 
       // Page
-//      services.AddRazorPages();
       services.AddRazorPages().AddRazorPagesOptions(options => {
         options.Conventions.AuthorizeFolder("/Dashboard", "RequireUserRole");
+        options.Conventions.AuthorizeFolder("/Search", "RequireUserRole");
+        options.Conventions.AuthorizeFolder("/Profile", "RequireUserRole");
       });
 
       services.AddControllersWithViews().AddRazorRuntimeCompilation();
