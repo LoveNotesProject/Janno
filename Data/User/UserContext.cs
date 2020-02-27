@@ -22,6 +22,8 @@ namespace Janno.Data.User {
     public DbSet<User> User { get; set; }
     public DbSet<UserDetail> Details { get; set; }
     public DbSet<UserSearch> Searches { get; set; }
+    public DbSet<UserSport> Sports { get; set; }
+    public DbSet<UserInterest> Interests { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder builder) {
@@ -31,6 +33,10 @@ namespace Janno.Data.User {
       builder.Entity<IdentityUserRole<string>>().ToTable("UserRole");
       builder.Entity<IdentityRole>().ToTable("Roles");
       builder.Entity<UserDetail>().ToTable("UserDetail");
+      builder.Entity<UserLocation>().ToTable("UserLocation");
+
+      builder.Entity<UserSport>().ToTable("UserSport");
+      builder.Entity<UserInterest>().ToTable("UserInterest");
     }
 
     public override int SaveChanges() {

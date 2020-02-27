@@ -124,19 +124,11 @@ namespace Janno.Data.User {
 
       var user = await Context.Users
         .AsNoTracking()
+        .Include(d => d.Detail)
+        .Include(l => l.UserLocation)
         .Cacheable()
         .Where(t => t.Id == id)
         .FirstOrDefaultAsync(cancellationToken);
-
-//      var userQuery = from user in Context.User
-//        where user.Id == id
-//        select new {
-//          user,
-//          user.Detail,
-//          roles = (from userRole in user.UserRoles
-//            join role in Context.Roles on userRole.Id equals role.Id
-//            select role).ToList()
-//        };
 
       stopwatch.Stop();
       Console.WriteLine("User: " + id + " loaded (" + stopwatch.ElapsedMilliseconds + "ms)");

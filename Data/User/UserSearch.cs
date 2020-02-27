@@ -5,7 +5,7 @@ namespace Janno.Data.User {
 
   public class UserSearch {
 
-    public string SearchId { get; set; }
+    public string UserSearchId { get; set; }
 
     [ForeignKey("User")]
     public string UserId { get; set; }

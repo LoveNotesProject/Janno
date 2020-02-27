@@ -1,4 +1,5 @@
 using System;
+using Janno.Data.User.Profile;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Internal;
 
@@ -48,6 +49,35 @@ namespace Janno.Data.User {
           SecurityStamp = "GV5NYDTJXX46BPUTOIHKRMSMF3X7Z25S",
           ConcurrencyStamp = "fe490719-2b07-432d-b7d5-f171f0dd941c",
           LockoutEnabled = true,
+
+          Detail = new UserDetail {
+            FirstName = "Lukas",
+            Age = 22,
+            Gender = UserGender.MALE,
+          },
+
+          UserLocation = new UserLocation {
+            City = "Augsburg",
+            Latitude = 48.3583779,
+            Longitude = 10.7914009,
+            Accuracy = 0
+          },
+
+          UserInterest = new UserInterest {
+            Casino = false,
+            Cinema = true,
+            Movie = true,
+            Music = true,
+            Programming = true,
+            VideoGame = true,
+          },
+
+          UserSport = new UserSport {
+            Gym = true,
+            MiniGolf = true,
+            Bowling = false,
+            Jog = true
+          }
         };
 
         // User
@@ -61,6 +91,35 @@ namespace Janno.Data.User {
           SecurityStamp = "GV5NYDTJXX46BPUTOIHKRMSMF3X7Z25S",
           ConcurrencyStamp = "fe490719-2b07-432d-b7d5-f171f0dd941c",
           LockoutEnabled = true,
+
+          Detail = new UserDetail {
+            FirstName = "Christoph",
+            Age = 22,
+            Gender = UserGender.MALE,
+          },
+
+          UserLocation = new UserLocation {
+            City = "München",
+            Latitude = 48.1391871,
+            Longitude = 11.5849897,
+            Accuracy = 0
+          },
+
+          UserInterest = new UserInterest {
+            Casino = true,
+            Cinema = true,
+            Movie = true,
+            Music = true,
+            Programming = false,
+            VideoGame = true,
+          },
+
+          UserSport = new UserSport {
+            Gym = true,
+            MiniGolf = true,
+            Bowling = false,
+            Jog = true
+          }
         };
 
         context.User.Add(user);

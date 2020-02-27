@@ -10,6 +10,9 @@ namespace Janno.Data.User {
     public virtual ICollection<UserSearch> UserSearches { get; set; }
     
     public virtual UserLocation UserLocation { get; set; }
+    
+    public virtual UserSport UserSport { get; set; }
+    public virtual UserInterest UserInterest { get; set; }
 
     public virtual UserDetail Detail { get; set; }
   }

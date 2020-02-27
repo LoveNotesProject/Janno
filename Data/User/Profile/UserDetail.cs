@@ -15,10 +15,6 @@ namespace Janno.Data.User.Profile {
 
     public UserGender Gender { get; set; }
     
-    public UserInterest Interest { get; set; }
-    
-    public UserSport Sport { get; set; }
-
     public int Age { get; set; }
 
     public DateTime LastLogin { get; set; }

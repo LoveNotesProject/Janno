@@ -1,7 +1,10 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Janno.Data.User.Profile {
 
   public class UserInterest {
 
+    [ForeignKey("User")]
     public string UserInterestId { get; set; }
 
     public bool Travel { get; set; }
@@ -42,6 +45,7 @@ namespace Janno.Data.User.Profile {
 
     public bool Motorcycle { get; set; }
 
+    public virtual User User { get; set; }
   }
 
 }

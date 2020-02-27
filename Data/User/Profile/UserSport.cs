@@ -1,7 +1,10 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Janno.Data.User.Profile {
 
   public class UserSport {
 
+    [ForeignKey("User")]
     public string UserSportId { get; set; }
     
     public bool Football { get; set; }
@@ -40,6 +43,7 @@ namespace Janno.Data.User.Profile {
     
     public bool Bowling { get; set; }
     
+    public virtual User User { get; set; }
   }
 
 }
