@@ -1,0 +1,273 @@
+@page "/Search"
+@model Janno.Pages.Search.SearchIndexModel
+
+@{
+  Layout = "Shared/DashboardLayout";
+  ViewData["Title"] = "Person oder Gruppe suchen";
+}
+
+<div class="mdc-layout-grid" style="height: 100%" decrease="false">
+<div class="mdc-layout-grid__inner" style="height: 100%; align-items: center">
+<div class="mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-6-desktop">
+  <div class="search-single-person">
+    <h1 class="mdc-typography mdc-typography--headline6">
+      <i class="material-icons icon-text">person</i>Person suchen
+    </h1>
+    <p class="mdc-typography--body2 search-single-person-description">
+      Eine Person suchen die, die selben Interessen und Sportaktivitäten teilt
+    </p>
+    <div class="search-single-person-gender-container">
+      <h6 class="mdc-typography mdc-typography--headline6">
+        <i class="material-icons icon-text">face</i>Geschlecht
+      </h6>
+      <div class="mdc-chip-set mdc-chip-set--choice" role="grid" data-chip-gender>
+        <div class="mdc-chip mdc-chip--selected" role="row">
+          <div class="mdc-chip__ripple"></div>
+          <span role="gridcell">
+            <span role="button" tabindex="0" class="mdc-chip__text">Männlich</span>
+          </span>
+        </div>
+        <div class="mdc-chip mdc-chip--selected" role="row">
+          <div class="mdc-chip__ripple"></div>
+          <span role="gridcell">
+            <span role="button" tabindex="0" class="mdc-chip__text">Weiblich</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="search-single-person-distance-container">
+      <h6 class="mdc-typography mdc-typography--headline6">
+        <i class="material-icons icon-text">directions_car</i>Entfernung in km
+      </h6>
+      <div class="mdc-slider mdc-slider--discrete mdc-slider--active" tabindex="0" role="slider" aria-valuemin="16" aria-valuemax="100" aria-valuenow="50" aria-label="Select Value">
+        <input type="hidden" value="50">
+        <div class="mdc-slider__track-container">
+          <div class="mdc-slider__track"></div>
+        </div>
+        <div class="mdc-slider__thumb-container">
+          <div class="mdc-slider__pin">
+            <span class="mdc-slider__pin-value-marker">50</span>
+          </div>
+          <svg class="mdc-slider__thumb" width="21" height="21">
+            <circle cx="10.5" cy="10.5" r="7.875"></circle>
+          </svg>
+          <div class="mdc-slider__focus-ring"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="search-single-person-distance-container">
+      <h6 class="mdc-typography mdc-typography--headline6">
+        <i class="material-icons icon-text">cake</i>Minimum Alter
+      </h6>
+      <div class="mdc-slider mdc-slider--discrete mdc-slider--active" tabindex="0" role="slider" aria-valuemin="16" aria-valuemax="100" aria-valuenow="50" aria-label="Select Value">
+        <input type="hidden" value="50">
+        <div class="mdc-slider__track-container">
+          <div class="mdc-slider__track"></div>
+        </div>
+        <div class="mdc-slider__thumb-container">
+          <div class="mdc-slider__pin">
+            <span class="mdc-slider__pin-value-marker">50</span>
+          </div>
+          <svg class="mdc-slider__thumb" width="21" height="21">
+            <circle cx="10.5" cy="10.5" r="7.875"></circle>
+          </svg>
+          <div class="mdc-slider__focus-ring"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="search-single-person-distance-container">
+      <h6 class="mdc-typography mdc-typography--headline6">
+        <i class="material-icons icon-text">cake</i>Maximum Alter
+      </h6>
+      <div class="mdc-slider mdc-slider--discrete mdc-slider--active" tabindex="0" role="slider" aria-valuemin="16" aria-valuemax="100" aria-valuenow="50" aria-label="Select Value">
+        <input type="hidden" value="50">
+        <div class="mdc-slider__track-container">
+          <div class="mdc-slider__track"></div>
+        </div>
+        <div class="mdc-slider__thumb-container">
+          <div class="mdc-slider__pin">
+            <span class="mdc-slider__pin-value-marker">50</span>
+          </div>
+          <svg class="mdc-slider__thumb" width="21" height="21">
+            <circle cx="10.5" cy="10.5" r="7.875"></circle>
+          </svg>
+          <div class="mdc-slider__focus-ring"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="search-single-person-button-container text-center">
+      <button class="mdc-button" data-action-search-single-person>
+        <div class="mdc-button__ripple"></div>
+        <span class="mdc-button__label">Suchen</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-6-desktop">
+  <div class="search-group">
+    <h1 class="mdc-typography mdc-typography--headline6">
+      <i class="material-icons icon-text">person</i>Gruppe suchen
+    </h1>
+    <p class="mdc-typography--body2 search-group-description">
+      Eine Gruppe suchen die, die selben Interessen und Sportaktivitäten teilen
+    </p>
+    <div class="search-group-amount-container">
+      <h6 class="mdc-typography mdc-typography--headline6">
+        <i class="material-icons icon-text">face</i>Wie viele Personen
+      </h6>
+      <div class="mdc-chip-set mdc-chip-set--choice" role="grid" data-chip-group-amount>
+        <div class="mdc-chip mdc-chip--selected" role="row">
+          <div class="mdc-chip__ripple"></div>
+          <span role="gridcell">
+            <span role="button" tabindex="0" class="mdc-chip__text">3</span>
+          </span>
+        </div>
+        <div class="mdc-chip mdc-chip" role="row">
+          <div class="mdc-chip__ripple"></div>
+          <span role="gridcell">
+            <span role="button" tabindex="0" class="mdc-chip__text">4</span>
+          </span>
+        </div>
+        <div class="mdc-chip mdc-chip" role="row">
+          <div class="mdc-chip__ripple"></div>
+          <span role="gridcell">
+            <span role="button" tabindex="0" class="mdc-chip__text">5</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="search-group-distance-container">
+      <h6 class="mdc-typography mdc-typography--headline6">
+        <i class="material-icons icon-text">directions_car</i>Entfernung in km
+      </h6>
+      <div class="mdc-slider mdc-slider--discrete mdc-slider--active" tabindex="0" role="slider" aria-valuemin="16" aria-valuemax="100" aria-valuenow="50" aria-label="Select Value">
+        <input type="hidden" value="50">
+        <div class="mdc-slider__track-container">
+          <div class="mdc-slider__track"></div>
+        </div>
+        <div class="mdc-slider__thumb-container">
+          <div class="mdc-slider__pin">
+            <span class="mdc-slider__pin-value-marker">50</span>
+          </div>
+          <svg class="mdc-slider__thumb" width="21" height="21">
+            <circle cx="10.5" cy="10.5" r="7.875"></circle>
+          </svg>
+          <div class="mdc-slider__focus-ring"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="search-group-distance-container">
+      <h6 class="mdc-typography mdc-typography--headline6">
+        <i class="material-icons icon-text">cake</i>Minimum Alter
+      </h6>
+      <div class="mdc-slider mdc-slider--discrete mdc-slider--active" tabindex="0" role="slider" aria-valuemin="16" aria-valuemax="100" aria-valuenow="50" aria-label="Select Value">
+        <input type="hidden" value="50">
+        <div class="mdc-slider__track-container">
+          <div class="mdc-slider__track"></div>
+        </div>
+        <div class="mdc-slider__thumb-container">
+          <div class="mdc-slider__pin">
+            <span class="mdc-slider__pin-value-marker">50</span>
+          </div>
+          <svg class="mdc-slider__thumb" width="21" height="21">
+            <circle cx="10.5" cy="10.5" r="7.875"></circle>
+          </svg>
+          <div class="mdc-slider__focus-ring"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="search-group-distance-container">
+      <h6 class="mdc-typography mdc-typography--headline6">
+        <i class="material-icons icon-text">cake</i>Maximum Alter
+      </h6>
+      <div class="mdc-slider mdc-slider--discrete mdc-slider--active" tabindex="0" role="slider" aria-valuemin="16" aria-valuemax="100" aria-valuenow="50" aria-label="Select Value">
+        <input type="hidden" value="50">
+        <div class="mdc-slider__track-container">
+          <div class="mdc-slider__track"></div>
+        </div>
+        <div class="mdc-slider__thumb-container">
+          <div class="mdc-slider__pin">
+            <span class="mdc-slider__pin-value-marker">50</span>
+          </div>
+          <svg class="mdc-slider__thumb" width="21" height="21">
+            <circle cx="10.5" cy="10.5" r="7.875"></circle>
+          </svg>
+          <div class="mdc-slider__focus-ring"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="search-group-button-container text-center">
+      <button class="mdc-button" data-action-search-group>
+        <div class="mdc-button__ripple"></div>
+        <span class="mdc-button__label">Suchen</span>
+      </button>
+    </div>
+
+
+  </div>
+</div>
+</div>
+</div>
+
+<style>
+  
+  .search-single-person-description, .search-group-description {
+    padding: 16px 0 0 0;
+  }
+  .search-single-person > .mdc-typography--body2, .search-single-person-gender-container, .search-single-person-distance-container, .search-group-description, .search-group-amount-container, .search-group-distance-container {
+    margin-bottom: 32px;
+  }
+  
+  .search-single-person, .search-group {
+    background-color: #eeeeee;
+    padding: 16px;
+  }
+  
+</style>
+
+<script>
+
+
+  let chipGender = new mdc.chips.MDCChipSet(document.querySelector('[data-chip-gender]'));
+  let chipGroupAmount = new mdc.chips.MDCChipSet(document.querySelector('[data-chip-group-amount]'));
+  
+  
+  window.addEventListener('load', () => {
+          slidersElement = document.querySelectorAll('.mdc-slider');
+          slidersElement.forEach((e) => {
+            let slider = new mdc.slider.MDCSlider(e);
+            
+           slider.listen('MDCSlider:change', () => {
+              slider.root_.classList.add('mdc-slider--active');
+              e.firstElementChild.value = slider.value;
+            });
+           
+             topAppBar.listen('MDCTopAppBar:nav', () => {
+                       slider.layout();  
+            });
+           
+          });
+          
+                   topAppBar.listen('MDCTopAppBar:nav', () => {
+                   });
+
+    
+    if(getCookie('showDrawer') === true) {
+    document.querySelector('.mdc-layout-grid').style = 'height: 100%; padding-bottom: 128px';
+      
+    } else {
+    document.querySelector('.mdc-layout-grid').style = 'height: 100%; padding-bottom: 128px; max-width: 100%';
+      
+    }
+  });
+
+</script>
