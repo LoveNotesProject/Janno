@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using EFSecondLevelCache.Core;
+using Janno.Data.User.Profile;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -257,7 +258,7 @@ namespace Janno.Data.User {
     #region UserSearch
 
     /// <summary>
-    /// Get from the database the specific user search
+    /// Get from the database the specific user search request
     /// </summary>
     /// <param name="userId"></param>
     /// <param name="cancellationToken"></param>
@@ -268,6 +269,34 @@ namespace Janno.Data.User {
       if (userId == null) throw new ArgumentNullException(nameof(userId));
 
       return await this.Context.Searches.Where(u => u.UserId == userId).FirstOrDefaultAsync(cancellationToken);
+    }
+
+    #endregion
+
+    #region UserInterest
+
+    public async Task<UserInterest> GetUserInterestAsync(string userId, CancellationToken cancellationToken) {
+      cancellationToken.ThrowIfCancellationRequested();
+      if (userId == null) throw new ArgumentNullException(nameof(userId));
+
+      return await this.Context.Interests
+        .Where(u => u.UserInterestId == userId)
+        .Cacheable()
+        .FirstOrDefaultAsync(cancellationToken);
+    }
+
+    #endregion
+
+    #region UserSport
+
+    public async Task<UserSport> GetUserSportAsync(string userId, CancellationToken cancellationToken) {
+      cancellationToken.ThrowIfCancellationRequested();
+      if (userId == null) throw new ArgumentNullException(nameof(userId));
+
+      return await this.Context.Sports
+        .Where(u => u.UserSportId == userId)
+        .Cacheable()
+        .FirstOrDefaultAsync(cancellationToken);
     }
 
     #endregion
