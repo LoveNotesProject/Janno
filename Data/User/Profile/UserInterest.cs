@@ -2,6 +2,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Janno.Data.User.Profile {
 
+  /// <summary>
+  /// Create UserInterest table with all interests
+  /// Every field is a boolean with the default value 0
+  /// </summary>
   public class UserInterest {
 
     [ForeignKey("User")]
@@ -44,7 +48,9 @@ namespace Janno.Data.User.Profile {
     public bool Camera { get; set; }
 
     public bool Motorcycle { get; set; }
-
+    
+    public bool Cafe { get; set; }
+    
     public virtual User User { get; set; }
   }
 

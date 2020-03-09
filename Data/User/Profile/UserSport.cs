@@ -2,6 +2,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Janno.Data.User.Profile {
 
+  /// <summary>
+  /// Create UserSport table with all sport types
+  /// Every field is a boolean with the default value 0
+  /// </summary>
   public class UserSport {
 
     [ForeignKey("User")]
@@ -42,6 +46,8 @@ namespace Janno.Data.User.Profile {
     public bool Rockby { get; set; }
     
     public bool Bowling { get; set; }
+    
+    public bool Row { get; set; }
     
     public virtual User User { get; set; }
   }
