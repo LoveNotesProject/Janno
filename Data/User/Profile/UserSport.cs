@@ -43,7 +43,7 @@ namespace Janno.Data.User.Profile {
     
     public bool Hockey { get; set; }
     
-    public bool Rockby { get; set; }
+    public bool Rugby { get; set; }
     
     public bool Bowling { get; set; }
     
