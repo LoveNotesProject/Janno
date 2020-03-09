@@ -1,0 +1,78 @@
+﻿@using Janno.Data.User
+@inject UserManager UserManager
+
+@* Comment: *@
+@* Get the required information from the database *@
+@{
+  var user = (User) ViewData["User"];
+  var userInterest = await this.UserManager.GetUserInterestAsync(user.Id);
+}
+
+@* Comment: *@
+@* This is all static because we didn't have enough time, but basically this view is responsible, that the user can manage his Photos *@
+<div class="profile-setting-picture-container">
+  <div class="mdc-layout-grid__inner">
+    @* Comment: *@
+    @* This is the Upload Button *@
+    <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone text-center">
+      <p>Click on the "Choose File" button to upload a file:</p>
+      <input type="file">
+      <input type="submit">
+    </div>
+    <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+      <div class="mdc-layout-grid__inner pictures-container">
+        <div class="mdc-layout-grid__cell--span-12">
+          <ul class="mdc-image-list mdc-image-list--masonry">
+            @* Comment: *@
+            @* Sample Picture *@
+            <li class="mdc-image-list__item">
+              <img class="mdc-image-list__image" src="https://images.assetsdelivery.com/compings_v2/jegas/jegas1805/jegas180500497.jpg" alt="Profilbild"/>
+              <div class="mdc-image-list__supporting">
+                <span class="mdc-image-list__label">Text label</span>
+              </div>
+            </li>
+            <li class="mdc-image-list__item">
+              <img class="mdc-image-list__image" src="https://images.assetsdelivery.com/compings_v2/jegas/jegas1805/jegas180500497.jpg" alt="Profilbild"/>
+              <div class="mdc-image-list__supporting">
+                <span class="mdc-image-list__label">Text label</span>
+              </div>
+            </li>
+            <li class="mdc-image-list__item">
+              <img class="mdc-image-list__image" src="https://images.assetsdelivery.com/compings_v2/jegas/jegas1805/jegas180500497.jpg" alt="Profilbild"/>
+              <div class="mdc-image-list__supporting">
+                <span class="mdc-image-list__label">Text label</span>
+              </div>
+            </li>
+            <li class="mdc-image-list__item">
+              <img class="mdc-image-list__image" src="https://images.assetsdelivery.com/compings_v2/jegas/jegas1805/jegas180500497.jpg" alt="Profilbild"/>
+              <div class="mdc-image-list__supporting">
+                <span class="mdc-image-list__label">Text label</span>
+              </div>
+            </li>
+            <li class="mdc-image-list__item">
+              <img class="mdc-image-list__image" src="https://images.assetsdelivery.com/compings_v2/jegas/jegas1805/jegas180500497.jpg" alt="Profilbild"/>
+              <div class="mdc-image-list__supporting">
+                <span class="mdc-image-list__label">Text label</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+
+  .mdc-image-list--masonry {
+    column-count: 4;
+    padding: 8px;
+  }
+  
+  
+  .mdc-image-list__image {
+    min-width: 64px;
+    min-height: 64px;
+  }
+</style>

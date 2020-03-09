@@ -1,0 +1,140 @@
+﻿@using Janno.Data.User
+@inject UserManager UserManager
+
+@* Comment: *@
+@* Get the required information from the database *@
+@{
+  var user = (User) ViewData["User"];
+  var userSport = await this.UserManager.GetUserSportAsync(user.Id);
+}
+
+
+@* Comment: *@
+@* Itemizes the sport-activities in the ProfileIndex.cshtml. If the user has selected a specific sport in his settings (ProfileSettingSportPartial.cshtml),
+    it will be displayed here *@
+<div class="profile-interest-container">
+  <div class="mdc-layout-grid__inner">
+    @* Comment: *@
+    @* Only shows the item, if it is stored in the database in relation to the user id *@
+    @if (userSport.Swim) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          pool
+        </i>
+        <h6 class="mdc-typography--body1">Schwimmen</h6>
+      </div>
+    }
+    @if (userSport.Row) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          rowing
+        </i>
+        <h6 class="mdc-typography--body1">Rudern</h6>
+      </div>
+    }
+    @if (userSport.Football) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          sports_football
+        </i>
+        <h6 class="mdc-typography--body1">Football</h6>
+      </div>
+    }
+    @if (userSport.Soccerball) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          sports_soccer
+        </i>
+        <h6 class="mdc-typography--body1">Fußball</h6>
+      </div>
+    }
+    @if (userSport.Volleyball) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          sports_volleyball
+        </i>
+        <h6 class="mdc-typography--body1">Volleyball</h6>
+      </div>
+    }
+    @if (userSport.Basketball) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          sports_basketball
+        </i>
+        <h6 class="mdc-typography--body1">Basketball</h6>
+      </div>
+    }
+    @if (userSport.Tennis) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          sports_tennis
+        </i>
+        <h6 class="mdc-typography--body1">Tennis</h6>
+      </div>
+    }
+    @if (userSport.Baseball) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          sports_baseball
+        </i>
+        <h6 class="mdc-typography--body1">Baseball</h6>
+      </div>
+    }
+    @if (userSport.Gym) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          fitness_center
+        </i>
+        <h6 class="mdc-typography--body1">Fitness</h6>
+      </div>
+    }
+    @if (userSport.Hockey) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          sports_hockey
+        </i>
+        <h6 class="mdc-typography--body1">Hockey</h6>
+      </div>
+    }
+    @if (userSport.Rugby) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          sports_rugby
+        </i>
+        <h6 class="mdc-typography--body1">Rugby</h6>
+      </div>
+    }
+    @if (userSport.Golf) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          sports_golf
+        </i>
+        <h6 class="mdc-typography--body1">Golf</h6>
+      </div>
+    }
+    @if (userSport.MiniGolf) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          golf_course
+        </i>
+        <h6 class="mdc-typography--body1">Minigolf</h6>
+      </div>
+    }
+    @if (userSport.Hike) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          landscape
+        </i>
+        <h6 class="mdc-typography--body1">Klettern/ Wandern</h6>
+      </div>
+    }
+    @if (userSport.Bowling) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          group_work
+        </i>
+        <h6 class="mdc-typography--body1">Bowling</h6>
+      </div>
+    }
+  </div>
+</div>

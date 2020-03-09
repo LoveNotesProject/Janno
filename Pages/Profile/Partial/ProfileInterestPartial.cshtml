@@ -1,0 +1,180 @@
+﻿@using Janno.Data.User
+@inject UserManager UserManager
+
+@* Comment: *@
+@* Get the required information from the database *@
+@{
+  var user = (User) ViewData["User"];
+  var userInterest = await this.UserManager.GetUserInterestAsync(user.Id);
+}
+
+
+@* Comment: *@
+@* Itemizes the Interests in the ProfileIndex.cshtml. If the user has selected a specific interest in his settings (ProfileSettingInterestPartial.cshtml),
+    it will be displayed here *@
+<div class="profile-sport-container">
+  <div class="mdc-layout-grid__inner">
+    @* Comment: *@
+    @* Only shows the item, if it is stored in the database in relation to the user id *@
+    @if (userInterest.Travel) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          card_travel
+        </i>
+        <h6 class="mdc-typography--body1"> Reisen</h6>
+      </div>
+    }
+    @if (userInterest.Beach) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          beach_access
+        </i>
+        <h6 class="mdc-typography--body1"> Strand</h6>
+      </div>
+    }
+    @if (userInterest.Mountain) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          landscape
+        </i>
+        <h6 class="mdc-typography--body1"> Berge</h6>
+      </div>
+    }
+    @if (userInterest.Grill) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          outdoor_grill
+        </i>
+        <h6 class="mdc-typography--body1">Grillen</h6>
+      </div>
+    }
+    @if (userInterest.City) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          location_city
+        </i>
+        <h6 class="mdc-typography--body1"> Stadt</h6>
+      </div>
+    }
+    @if (userInterest.Music) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          music_note
+        </i>
+        <h6 class="mdc-typography--body1"> Musik</h6>
+      </div>
+    }
+    @if (userInterest.Party) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          local_bar
+        </i>
+        <h6 class="mdc-typography--body1"> Party</h6>
+      </div>
+    }
+    @if (userInterest.School) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          school
+        </i>
+        <h6 class="mdc-typography--body1"> Lernen</h6>
+      </div>
+    }
+    @if (userInterest.Nature) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          nature_people
+        </i>
+        <h6 class="mdc-typography--body1">Spazieren</h6>
+      </div>
+    }
+    @if (userInterest.Movie) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          movie
+        </i>
+        <h6 class="mdc-typography--body1">Filme</h6>
+      </div>
+    }
+    @if (userInterest.Cinema) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          local_movies
+        </i>
+        <h6 class="mdc-typography--body1">Kino</h6>
+      </div>
+    }
+    @if (userInterest.Programming) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          code
+        </i>
+        <h6 class="mdc-typography--body1">Programmieren</h6>
+      </div>
+    }
+    @if (userInterest.Casino) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          casino
+        </i>
+        <h6 class="mdc-typography--body1">Casino</h6>
+      </div>
+    }
+    @if (userInterest.Breakfast) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          restaurant_menu
+        </i>
+        <h6 class="mdc-typography--body1">Frühstücken</h6>
+      </div>
+    }
+    @if (userInterest.Restaurant) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          fastfood
+        </i>
+        <h6 class="mdc-typography--body1">Essengehen</h6>
+      </div>
+    }
+    @if (userInterest.Cafe) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          local_cafe
+        </i>
+        <h6 class="mdc-typography--body1">Kaffeetrinken</h6>
+      </div>
+    }
+    @if (userInterest.Camera) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          photo_camera
+        </i>
+        <h6 class="mdc-typography--body1">Fotografieren</h6>
+      </div>
+    }
+    @if (userInterest.VideoGame) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          sports_esports
+        </i>
+        <h6 class="mdc-typography--body1">Videospiele</h6>
+      </div>
+    }
+    @if (userInterest.Theater) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          account_balance
+        </i>
+        <h6 class="mdc-typography--body1">Theater</h6>
+      </div>
+    }
+    @if (userInterest.Motorcycle) {
+      <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+        <i class="material-icons">
+          motorcycle
+        </i>
+        <h6 class="mdc-typography--body1">Motorrad</h6>
+      </div>
+    }
+  </div>
+</div>

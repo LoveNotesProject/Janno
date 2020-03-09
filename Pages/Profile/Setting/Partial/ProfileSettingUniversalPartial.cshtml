@@ -1,0 +1,84 @@
+﻿@using Janno.Data.User
+@inject UserManager UserManager
+@* Comment: *@
+@* Get the required information from the database *@
+@{
+  var user = (User) ViewData["User"];
+  var userInfo = await UserManager.GetUserAsync(User);
+}
+
+@* Comment: *@
+@* Gets the userinformation from the current user and displays an input-textfield to change the information *@
+<div class="profile-setting-universal-container">
+  <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+    <label class="mdc-text-field">
+      <div class="mdc-text-field__ripple"></div>
+      <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" value="@userInfo.Detail.FirstName" data-user-name>
+      <span class="mdc-floating-label mdc-floating-label--float-above">
+        Name
+      </span>
+      <div class="mdc-line-ripple"></div>
+    </label>
+  </div>
+  <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+    <label class="mdc-text-field">
+      <div class="mdc-text-field__ripple"></div>
+      <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" value="@userInfo.UserLocation.City" data-user-city>
+      <span class="mdc-floating-label mdc-floating-label--float-above">
+        Ort
+      </span>
+      <div class="mdc-line-ripple"></div>
+    </label>
+    <div class="mdc-text-field-helper-line">
+      <div class="mdc-text-field-helper-text" id="my-helper-id" aria-hidden="true">helper text</div>
+    </div>
+  </div>
+  <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+    <h6 class="mdc-typography--body1">Gebutsdatum:</h6>
+  </div>
+  <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--align-middle">
+    <input class="datepicker" type="date" data-user-date>
+  </div>
+  @* Comment:  *@
+  @* Displays a save Button. Further information about the functionalities is below *@
+  <div class="mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+    <button class="mdc-button mdc-button--raised right" data-action-save-user-information>
+      <div class="mdc-button__ripple"></div>
+      <span class="mdc-button__label">Speichern</span>
+    </button>
+  </div>
+</div>
+
+
+@* Comment: *@
+@* Set some styles on the layouts *@
+<style>
+
+    .mdc-text-field {
+      margin-top: 30px;
+    }
+
+    .mdc-typography--body1 {
+      text-align: left;
+      vertical-align: center;
+      line-height: 60px;
+    }
+   
+    .datepicker {
+      height: 20px;
+    }
+</style>
+
+
+<script>
+// Comment:
+// Gets the information of the Texfields and the Datepicker and converts the data to JSON
+   document.querySelector('.mdc-button[data-action-save-user-information]').addEventListener('click' , ()=>{ //ClickListener on Save-Button
+      let textFieldName = document.getElementById('data-user-name').value;
+      let textFieldLocation = document.getElementById('data-user-city').value;
+      let dateInput = document.getElementById('data-user-date').value;
+      let jsonObject = JSON.stringify({username : textFieldName, location : textFieldLocation , date : dateInput});
+      console.log(jsonObject);
+   });
+
+</script>

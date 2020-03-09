@@ -1,0 +1,764 @@
+﻿@using Janno.Data.User
+@inject UserManager UserManager
+
+@* Comment: *@
+@* Get the required information from the database *@
+@{
+  var user = (User) ViewData["User"];
+  var userInterestSetting = await this.UserManager.GetUserInterestAsync(user.Id);
+  var userSportSetting = await this.UserManager.GetUserSportAsync(user.Id);
+}
+
+
+@* Comment: *@
+@* Itemizes the sport-activities in the ProfileIndex.cshtml (Icon and text) and preselects the checked items the user has selected before. *@
+<div class="profile-setting-interest-container">
+<div class="mdc-layout-grid__inner">
+<div class="mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+  <h6 class="mdc-typography--headline5 text-left">Interessen</h6>
+</div>
+<div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+  <ul class="mdc-list demo-list mdc-list--avatar-list">
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="-1">
+      @* Comment: *@
+      @* Sets the icon if the item *@
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">card_travel</span>
+      @* Comment: *@
+      @* Sets the Text of the Item *@
+      <h6 class="mdc-typography--body1">Reisen</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @* Comment: *@
+        @* Sets the Checkbox on selected, if the item is stored in the database in relation to the user id *@
+        @if (userInterestSetting.Travel) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="travel" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="travel">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="-1">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">beach_access</span>
+      <h6 class="mdc-typography--body1">Strand</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userInterestSetting.Beach) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="beach" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="beach">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="-1">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">landscape</span>
+      <h6 class="mdc-typography--body1">Berge</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        <input type="checkbox" class="mdc-checkbox__native-control" tabindex="-1">
+        <div class="mdc-checkbox__background">
+          @if (userInterestSetting.Mountain) {
+            <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="mountain" checked>
+          }
+          else {
+            <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="mountain">
+          }
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="-1">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">outdoor_grill</span>
+      <h6 class="mdc-typography--body1">Grillen</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userInterestSetting.Grill) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="grill" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="grill">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="-1">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">location_city</span>
+      <h6 class="mdc-typography--body1">Stadt</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userInterestSetting.City) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="city" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="city">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="-1">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">music_note</span>
+      <h6 class="mdc-typography--body1">Musik</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userInterestSetting.Music) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="music" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="music">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="-1">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">local_bar</span>
+      <h6 class="mdc-typography--body1">Party</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userInterestSetting.Party) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="party" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="party">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="-1">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">school</span>
+      <h6 class="mdc-typography--body1">Lernen</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userInterestSetting.School) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="school" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="school">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="-1">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">nature_people</span>
+      <h6 class="mdc-typography--body1">Spazieren</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userInterestSetting.Nature) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="nature" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="nature">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="-1">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">movie</span>
+      <h6 class="mdc-typography--body1">Filme</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userInterestSetting.Movie) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="movie" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="movie">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+  <ul class="mdc-list demo-list mdc-list--avatar-list">
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="-1">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">local_movies</span>
+      <h6 class="mdc-typography--body1">Kino</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userInterestSetting.Cinema) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="cinema" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="cinema">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="-1">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">code</span>
+      <h6 class="mdc-typography--body1">Programmieren</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userInterestSetting.Programming) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="programming" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="programming">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="-1">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">casino</span>
+      <h6 class="mdc-typography--body1">Casino</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userInterestSetting.Casino) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="casino" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="casino">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="-1">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">restaurant_menu</span>
+      <h6 class="mdc-typography--body1">Frühstücken</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userInterestSetting.Breakfast) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="breakfast" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="breakfast">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="-1">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">fastfood</span>
+      <h6 class="mdc-typography--body1">Essengehen</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userInterestSetting.Restaurant) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="restaurant" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="restaurant">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="-1">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">local_cafe</span>
+      <h6 class="mdc-typography--body1">Kaffee</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        <input type="checkbox" class="mdc-checkbox__native-control">
+        @*         @if (userInterestSetting.Cafe) { *@
+        @*              <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="cafe" checked> *@
+        @*            } *@
+        @*            else { *@
+        @*              <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="cafe"> *@
+        @*            } *@
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="-1">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">photo_camera</span>
+      <h6 class="mdc-typography--body1">Foto</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userInterestSetting.Camera) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="camera" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="camera">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="-1">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">sports_esports</span>
+      <h6 class="mdc-typography--body1">Videospiele</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userInterestSetting.VideoGame) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="videogame" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="videogame">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="-1">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">account_balance</span>
+      <h6 class="mdc-typography--body1">Theater</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userInterestSetting.Theater) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="theater" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="theater">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="-1">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">motorcycle</span>
+      <h6 class="mdc-typography--body1">Motorrad</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userInterestSetting.Motorcycle) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="motorcycle" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-interest-name="motorcycle">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+  <h6 class="mdc-typography--headline5 text-left">Sport</h6>
+</div>
+<div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+  <ul class="mdc-list demo-list mdc-list--avatar-list">
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="0">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">pool</span>
+      <h6 class="mdc-typography--body1">Schwimmen</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userSportSetting.Swim) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="swim" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="swim">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="0">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">rowing</span>
+      <h6 class="mdc-typography--body1">Rudern</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        <input type="checkbox" class="mdc-checkbox__native-control">
+        @*         @if (userSportSetting.Row) { *@
+        @*           <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="rowing" checked> *@
+        @*         } *@
+        @*         else { *@
+        @*           <input type="checkbox" class="mdc-checkbox__native-control data-sport-name="rowing""> *@
+        @*         } *@
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="0">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">sports_football</span>
+      <h6 class="mdc-typography--body1">Football</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userSportSetting.Football) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="football" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="football">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="0">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">group_work</span>
+      <h6 class="mdc-typography--body1">Bowling</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userSportSetting.Bowling) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="bowling" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="bowling">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="0">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">sports_soccer</span>
+      <h6 class="mdc-typography--body1">Fußball</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userSportSetting.Soccerball) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="soccer" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="soccer">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="0">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">sports_volleyball</span>
+      <h6 class="mdc-typography--body1">Volleyball</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userSportSetting.Volleyball) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="volleyball" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="vollayball">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="0">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">sports_basketball</span>
+      <h6 class="mdc-typography--body1">Basketball</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userSportSetting.Basketball) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="basketball" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="basketball">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
+  <ul class="mdc-list demo-list mdc-list--avatar-list">
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="0">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">sports_tennis</span>
+      <h6 class="mdc-typography--body1">Tennis</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userSportSetting.Tennis) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="tennis" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="tennis">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="0">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">sports_baseball</span>
+      <h6 class="mdc-typography--body1">Baseball</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userSportSetting.Baseball) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="baseball" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="baseball">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="0">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">fitness_center</span>
+      <h6 class="mdc-typography--body1">Fitness</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        <input type="checkbox" class="mdc-checkbox__native-control">
+        @if (userSportSetting.Gym) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="fitness" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="fitness">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="0">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">sports_hockey</span>
+      <h6 class="mdc-typography--body1">Hockey</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userSportSetting.Hockey) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="hockey" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="hockey">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="0">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">sports_rugby</span>
+      <h6 class="mdc-typography--body1">Rugby</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userSportSetting.Rugby) {
+          <input type="checkbox" class="mdc-checkbox__native-control" checked data-sport-name="rugby">
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="rugby">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="0">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">sports_golf</span>
+      <h6 class="mdc-typography--body1">Golf</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userSportSetting.Golf) {
+          <input type="checkbox" class="mdc-checkbox__native-control"data-sport-name="golf" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="golf">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="0">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">golf_course</span>
+      <h6 class="mdc-typography--body1">Minigolf</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userSportSetting.MiniGolf) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="minigolf" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="minigolf">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+    <li class="mdc-list-item mdc-ripple-upgraded" tabindex="0">
+      <span class="mdc-list-item__graphic material-icons" aria-hidden="true">landscape</span>
+      <h6 class="mdc-typography--body1">Klettern / Wandern</h6>
+      <div class="mdc-checkbox mdc-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded">
+        @if (userSportSetting.Hike) {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="hike" checked>
+        }
+        else {
+          <input type="checkbox" class="mdc-checkbox__native-control" data-sport-name="hike">
+        }
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+        <div class="mdc-checkbox__ripple"></div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+@* Comment:  *@
+@* Displays a save Button. Further information about the functionalities is below *@
+<div class="mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+  <button class="mdc-button mdc-button--raised right" data-action-save-interest-sport>
+    <div class="mdc-button__ripple"></div>
+    <span class="mdc-button__label">Speichern</span>
+  </button>
+</div>
+</div>
+</div>
+
+
+<script>
+let checkBoxElements = document.querySelectorAll('.mdc-checkbox'); // select all checkboxes from document
+let checkboxList = [];
+
+checkBoxElements.forEach((e) => {
+  let checkbox = new mdc.checkbox.MDCCheckbox(e);
+  checkboxList.push(checkbox); //Adds checked items to Array
+});
+ document.querySelector('.mdc-button[data-action-save-interest-sport]').addEventListener('click' , ()=>{ //ClickListener on Save-Button
+   let jsonSportList = [];
+   let jsonInterestList = [];
+   
+   
+   // Comment:
+   // Checks every item of the array (checkboxList) and divides it into to seperate arrays for the database (interest and sport table)
+   checkboxList.forEach((e) => { 
+     if(e.checked) {
+      
+      if(e.root_.children[0].getAttribute('data-interest-name')){
+        let interestName = e.root_.children[0].getAttribute('data-interest-name'); //Checks is html tag is data-interest-name
+        jsonInterestList.push(interestName);
+
+      }else{
+        let sportName = e.root_.children[0].getAttribute('data-sport-name'); //Checks is html tag is data-sport-name
+         jsonSportList.push(sportName);
+      }
+     }
+   });  
+
+   // Comment:
+   // Converts both arrays into JSON-format to ready up for Push-Request
+   let jsonInterestObject = JSON.stringify(Object.assign({}, jsonInterestList));  //Converts to JSON Object
+   let jsonSportObject  = JSON.stringify(Object.assign({}, jsonSportList));
+   console.log(jsonInterestObject);
+   console.log(jsonSportObject);
+ });
+</script>

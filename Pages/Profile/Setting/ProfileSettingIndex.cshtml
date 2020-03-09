@@ -1,0 +1,155 @@
+﻿@page "/Settings"
+@model Janno.Pages.Profile.Setting.ProfileSettingIndex
+
+@* Comment:  *@
+@* Referezes to the parent "DashboardLayout.cstml". The ProfileSettingsIndex.cshtml is inserted in the parent-layout when adding /Settings to the BrowserUrl *@
+@{
+  Layout = "Shared/DashboardLayout";
+  ViewData["Title"] = "Einstellungen";
+}
+
+
+@* Comment:  *@
+@* This class allows the users to change their own userinformation. Depending on the selection of the Tab-bar the interest-/ sportactivities or pictures views *@
+@* are generated afterwards to increase the performance of the app. *@
+<div class="mdc-layout-grid">
+  <div class="mdc-layout-grid__inner">
+    <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone text-center">
+      <img class="profile-image" src="https://images.assetsdelivery.com/compings_v2/jegas/jegas1805/jegas180500497.jpg" alt="Profilbild" width="128px" height="128px"/>
+    </div>
+  </div>
+  @* Comment:  *@
+  @* Initializes the tab-bar. With interets and sport activities *@
+  <div class="mdc-tab-bar" role="tablist">
+    <div class="mdc-tab-scroller">
+      <div class="mdc-tab-scroller__scroll-area">
+        <div class="mdc-tab-scroller__scroll-content">
+          <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
+            <span class="mdc-tab__content">
+              <span class="mdc-tab__icon material-icons" aria-hidden="true">settings</span>
+              <span class="mdc-tab__text-label">Allgemein</span>
+            </span>
+            <span class="mdc-tab-indicator mdc-tab-indicator--active">
+              <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+            </span>
+            <span class="mdc-tab__ripple"></span>
+          </button>
+          <button class="mdc-tab" role="tab" aria-selected="true" tabindex="0">
+            <span class="mdc-tab__content">
+              <span class="mdc-tab__icon material-icons" aria-hidden="true">favorite</span>
+              <span class="mdc-tab__text-label">Interessen & Sport</span>
+            </span>
+            <span class="mdc-tab-indicator">
+              <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+            </span>
+            <span class="mdc-tab__ripple"></span>
+          </button>
+          <button class="mdc-tab" role="tab" aria-selected="true" tabindex="0">
+            <span class="mdc-tab__content">
+              <span class="mdc-tab__icon material-icons" aria-hidden="true">camera</span>
+              <span class="mdc-tab__text-label">Bilder</span>
+            </span>
+            <span class="mdc-tab-indicator">
+              <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+            </span>
+            <span class="mdc-tab__ripple"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/>
+  @* Comment: *@
+  @* Generates the "tab-view" ProfileSettingUniversalPartial.cshtml *@
+  <div class="profile-setting-universal-tab">
+    <div class="profile-setting-universal-container">
+      @await Html.PartialAsync("Partial/ProfileSettingUniversalPartial", null, new ViewDataDictionary(ViewData) {
+      })
+    </div>
+  </div>
+  @* Comment: *@
+  @* This is the container for the "interest-tab-view" *@
+  <div class="profile-setting-interest-tab">
+    <div class="profile-setting-interest-container">
+    </div>
+  </div>
+  @* Comment: *@
+  @* This is the container for the "picture-tab-view" *@
+  <div class="profile-setting-picture-tab">
+    <div class="profile-setting-picture-container">
+    </div>
+  </div>
+
+</div>
+
+@* Comment: *@
+@* Set some styles on the layouts *@
+<style>
+   
+   div {
+    word-wrap: break-word;
+   }
+   
+   .material-icons {
+       position: relative;
+       float: left;
+   }
+   
+
+</style>
+
+<script>
+
+
+    let tabBarElement = document.querySelector('.mdc-tab-bar');
+    const tabBar = new mdc.tab.MDCTabBar(tabBarElement);
+    // Comment:
+    // This is the Listenser for the tab-bar to load only the selected partial-layout
+    tabBar.listen('MDCTabBar:activated', (e) => {
+      
+      // Comment:
+      // If the interest-tab, sports-tab or the picture-tab is selected:
+      // Delete the layouts if exists to avoid duplicates and load the layout afterwards via Ajax API get request  
+      if (e.detail.index === 0) {
+        let response = sendAjaxGetHtml('?handler=ProfileSettingUniversalView');
+        
+        response.then((result)=>{
+          if (document.querySelector('.profile-setting-interest-container') !== null){
+          document.querySelector('.profile-setting-interest-container').remove();
+          }
+          if (document.querySelector('.profile-setting-picture-container') !== null){
+          document.querySelector('.profile-setting-picture-container').remove();
+            }
+          insertHTML('.profile-setting-universal-tab', result);
+          }).catch((error)=>{
+             console.error(error);      
+          });
+       }else if (e.detail.index === 1){
+        let response = sendAjaxGetHtml('?handler=ProfileSettingInterestView');
+                
+          response.then((result)=>{
+            if (document.querySelector('.profile-setting-universal-container') !== null){
+          document.querySelector('.profile-setting-universal-container').remove();
+          }
+            if (document.querySelector('.profile-setting-picture-container') !== null){
+          document.querySelector('.profile-setting-picture-container').remove();
+          }
+          insertHTML('.profile-setting-interest-tab', result)
+          }).catch((error)=>{
+             console.error(error);      
+          });
+       }else if (e.detail.index === 2){
+          let response = sendAjaxGetHtml('?handler=ProfileSettingPictureView');
+          response.then((result)=>{
+            if (document.querySelector('.profile-setting-universal-container') !== null){
+          document.querySelector('.profile-setting-universal-container').remove();
+          }
+            if (document.querySelector('.profile-setting-interest-container') !== null){
+          document.querySelector('.profile-setting-interest-container').remove();
+            }
+          insertHTML('.profile-setting-picture-tab', result);
+                          
+          })
+       }
+      });
+</script>

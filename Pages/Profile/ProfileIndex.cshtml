@@ -1,0 +1,206 @@
+﻿@page "/Profile"
+@model Janno.Pages.Profile.ProfileIndexModel
+
+@* Comment:  *@
+@* Referezes to the parent "DashboardLayout.cstml". The ProfileIndex.cshtml is inserted in the parent-layout when adding /Profile to the BrowserUrl *@
+@{
+  Layout = "Shared/DashboardLayout";
+  ViewData["Title"] = "Profil";
+}
+
+@* Comment:  *@
+@* This class shows the userprofile including the profileimage, userdata, interests and uploaded pictures. *@
+@* Everything, besides the interest-/ and sportactivities is pregenerated. Depending on the selection of the Tab-bar the interest-/ and sportactivities *@
+@* are generated afterwards to increase the performance of the app. *@
+
+<div class="mdc-layout-grid">
+  <div class="mdc-layout-grid__inner">
+    <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+      <img class="profile-image" src="https://images.assetsdelivery.com/compings_v2/jegas/jegas1805/jegas180500497.jpg" alt="Profilbild" width="128px" height="128px">
+      <div class="profile-information-container">
+
+        @* Comment:  *@
+        @* Get userinformation from database. *@
+
+        <h1 class="mdc-typography--headline5 align-profileimg">@Model.User.Detail.FirstName</h1>
+        <h6 class=" mdc-typography--body1">@Model.User.Detail.Age</h6>
+        @if (Model.User.Detail.IsOnline) {
+          <h6 class="mdc-typography--body1">Online</h6>
+        }
+        else {
+          <h6 class="mdc-typography--body1">Zuletzt Online: @Model.User.Detail.LastLogin.ToString("f")</h6>
+        }
+        <h6 class="mdc-typography--body1">@Model.User.UserLocation.City</h6>
+        <h6 class="mdc-typography--body1"> 13 Kilometer entfernt</h6>
+      </div>
+    </div>
+  </div>
+
+  @* Comment:  *@
+  @* Initializes the tab-bar. With interets and sport activities *@
+  <div class="mdc-tab-bar" role="tablist">
+    <div class="mdc-tab-scroller">
+      <div class="mdc-tab-scroller__scroll-area">
+        <div class="mdc-tab-scroller__scroll-content">
+          <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
+            <span class="mdc-tab__content">
+              <span class="mdc-tab__icon material-icons" aria-hidden="true">favorite</span>
+              <span class="mdc-tab__text-label">Interessen</span>
+            </span>
+            <span class="mdc-tab-indicator mdc-tab-indicator--active">
+              <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+            </span>
+            <span class="mdc-tab__ripple"></span>
+          </button>
+          <button class="mdc-tab" role="tab" aria-selected="true" tabindex="0">
+            <span class="mdc-tab__content">
+              <span class="mdc-tab__icon material-icons" aria-hidden="true">sports_handball</span>
+              <span class="mdc-tab__text-label">Sport</span>
+            </span>
+            <span class="mdc-tab-indicator">
+              <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+            </span>
+            <span class="mdc-tab__ripple"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/>
+
+  @* Comment: *@
+  @* Generates the "tab-view" ProfileInterestPartial.cshtml *@
+  <div class="profile-interest-tab">
+    @await Html.PartialAsync("Partial/ProfileInterestPartial", null, new ViewDataDictionary(ViewData) {
+      {
+        "User", Model.User
+      }
+    })
+  </div>
+
+  @* Comment: *@
+  @* This is the container for the "sport-tab-view" *@
+  <div class="profile-sport-tab"></div>
+
+  @* Comment: *@
+  @* Generates the uploaded userpictures. This are static samplepictures so far because we didn't have the time yet. *@
+  <div class="mdc-layout-grid__inner pictures-container">
+    <div class="mdc-layout-grid__cell--span-12">
+      <ul class="mdc-image-list mdc-image-list--masonry">
+        <li class="mdc-image-list__item">
+          <img class="mdc-image-list__image" src="https://images.assetsdelivery.com/compings_v2/jegas/jegas1805/jegas180500497.jpg" alt="Profilbild"/>
+          <div class="mdc-image-list__supporting">
+            <span class="mdc-image-list__label">Text label</span>
+          </div>
+        </li>
+        <li class="mdc-image-list__item">
+          <img class="mdc-image-list__image" src="https://images.assetsdelivery.com/compings_v2/jegas/jegas1805/jegas180500497.jpg" alt="Profilbild"/>
+          <div class="mdc-image-list__supporting">
+            <span class="mdc-image-list__label">Text label</span>
+          </div>
+        </li>
+        <li class="mdc-image-list__item">
+          <img class="mdc-image-list__image" src="https://images.assetsdelivery.com/compings_v2/jegas/jegas1805/jegas180500497.jpg" alt="Profilbild"/>
+          <div class="mdc-image-list__supporting">
+            <span class="mdc-image-list__label">Text label</span>
+          </div>
+        </li>
+        <li class="mdc-image-list__item">
+          <img class="mdc-image-list__image" src="https://images.assetsdelivery.com/compings_v2/jegas/jegas1805/jegas180500497.jpg" alt="Profilbild"/>
+          <div class="mdc-image-list__supporting">
+            <span class="mdc-image-list__label">Text label</span>
+          </div>
+        </li>
+        <li class="mdc-image-list__item">
+          <img class="mdc-image-list__image" src="https://images.assetsdelivery.com/compings_v2/jegas/jegas1805/jegas180500497.jpg" alt="Profilbild"/>
+          <div class="mdc-image-list__supporting">
+            <span class="mdc-image-list__label">Text label</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<style>
+
+/*Comment:*/
+/*Set some styles on the layouts and set the layoutproperties to the tab-bar*/
+
+  hr {
+    background: #333;
+    border: none;
+    color: #333;
+    height: 1px;
+    width: 100%;
+    margin-left: 0px;
+  }
+
+  div {
+    word-wrap: break-word;
+  }
+  
+  .profile-information-container {
+    margin-bottom: 20px;
+  }
+  
+  .pictures-container {
+    margin-top: 20px;
+  }
+  
+  .material-icons {
+      position: relative;
+      float: left;
+  }
+
+  
+  .mdc-image-list--masonry {
+    column-count: 4;
+    padding: 8px;
+  }
+  
+  
+  .mdc-image-list__image {
+    min-width: 64px;
+    min-height: 64px;
+  }
+  
+
+  
+</style>
+
+<script>
+
+  // Comment:
+  // This is the Listenser for the tab-bar to load only the selected partial-layout
+
+  let tabBarElement = document.querySelector('.mdc-tab-bar');
+  const tabBar = new mdc.tab.MDCTabBar(tabBarElement);
+  
+  
+  tabBar.listen('MDCTabBar:activated', (e)=>{
+    
+    // Comment:
+    // If the interest-tab or sports-tab is selected:
+    // Delete the layout if exists to avoid duplicates and load the layout afterwards via Ajax API get request  
+    if (e.detail.index === 0){
+      let response = sendAjaxGetHtml('?handler=ProfileInterestView');
+      
+      response.then((result)=>{
+        document.querySelector('.profile-interest-container').remove();
+        insertHTML('.profile-interest-tab', result);
+        
+      }).catch((error)=>{
+        console.error(error);
+      });
+    }else{
+      let response = sendAjaxGetHtml('?handler=ProfileSportView');
+      
+      response.then((result) => {
+        document.querySelector('.profile-sport-container').remove();
+        insertHTML('.profile-sport-tab', result)
+      })
+    }
+  });
+</script>
